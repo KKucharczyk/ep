@@ -1,10 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Overworld\ScreenFader.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Overworld\Warp.cs">
     <Files>
-      <File FileName="Assets\Scripts\CameraFollow.cs" Line="19" Column="60" />
-      <File FileName="Assets\Scripts\Overworld\Warp.cs" Line="17" Column="56" />
-      <File FileName="Assets\Scripts\Overworld\ScreenFader.cs" Line="8" Column="2" />
+      <File FileName="Assets\Scripts\CameraFollow.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Overworld\Warp.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Overworld\ScreenFader.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

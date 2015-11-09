@@ -64,6 +64,7 @@
      <Compile Include="Assets\Scripts\CameraFollow.cs" />
      <Compile Include="Assets\Scripts\Overworld\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\Overworld\ScreenFader.cs" />
+     <Compile Include="Assets\Scripts\Overworld\Spawn.cs" />
      <Compile Include="Assets\Scripts\Overworld\Warp.cs" />
      <Compile Include="Assets\Tiled2Unity\Scripts\Runtime\SortingLayerExposed.cs" />
      <Compile Include="Assets\Tiled2Unity\Scripts\Runtime\TileAnimator.cs" />
