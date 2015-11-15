@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Random = UnityEngine.Random;
 
@@ -29,6 +30,8 @@ public class BoardManager : MonoBehaviour {
 
 	private Transform boardHolder;
 	private List<Vector3> gridPosition = new List<Vector3>();
+
+
 
 	void InitialiseList() {
 		gridPosition.Clear();
@@ -76,7 +79,7 @@ public class BoardManager : MonoBehaviour {
 	}
 
 	//SetupScene initializes our level and calls the previous functions to lay out the game board
-	public void SetupScene (int level)
+	public void SetupScene ()
 	{
 		//Creates the outer walls and floor.
 		BoardSetup ();
@@ -91,13 +94,14 @@ public class BoardManager : MonoBehaviour {
 		LayoutObjectAtRandom (foodTiles, foodCount.minimum, foodCount.maximum);
 		
 		//Determine number of enemies based on current level number, based on a logarithmic progression
-		int enemyCount = (int)Mathf.Log(level, 2f);
+		int enemyCount = 1;
 		
 		//Instantiate a random number of enemies based on minimum and maximum, at randomized positions.
 		LayoutObjectAtRandom (enemyTiles, enemyCount, enemyCount);
 		
 		//Instantiate the exit tile in the upper right hand corner of our game board
 		Instantiate (exit, new Vector3 (columns - 1, rows - 1, 0f), Quaternion.identity);
+
 	}
 
 

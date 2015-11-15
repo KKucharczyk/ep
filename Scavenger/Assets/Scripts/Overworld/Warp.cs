@@ -11,8 +11,6 @@ public class Warp : MonoBehaviour {
 
 		yield return StartCoroutine (sf.FadeToBlack ());
 
-
-		Debug.Log ("An object collide.");
 		other.gameObject.transform.position = warpTarget.position;
 		Camera.main.transform.position = warpTarget.position;
 

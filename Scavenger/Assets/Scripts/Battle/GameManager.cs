@@ -11,10 +11,8 @@ public class GameManager : MonoBehaviour {
 	public static GameManager instance = null;
 	[HideInInspector] public bool playersTurn = true;
 
-	private Text levelText;
-	private GameObject levelImage;
+	private GameObject levelImage = null;
 	public BoardManager boardScript;
-	private int level = 1;
 	private List<Enemy> enemies;
 	private bool enemiesMoving;
 	private bool doingSetup;
@@ -33,29 +31,22 @@ public class GameManager : MonoBehaviour {
 	}
 
 	private void OnLevelWasLoaded(int index) {
-		level++;
 		InitGame ();
 	}
 
 	void InitGame() {
 		doingSetup = true;
-		levelImage = GameObject.Find ("LevelImage");
-		levelText = GameObject.Find ("LevelText").GetComponent<Text> ();
-		levelText.text = "Day " + level;
-		levelImage.SetActive (true);
 		Invoke ("HideLevelImage", levelStartDelay);
 
 		enemies.Clear ();
-		boardScript.SetupScene (level);
+		boardScript.SetupScene ();
 	}
 
 	private void HideLevelImage() {
-		levelImage.SetActive (false);
 		doingSetup = false;
 	}
 
 	public void GameOver() {
-		levelText.text = "After " + level + " days, you starved.";
 		levelImage.SetActive (false);
 		enabled = false;
 	}

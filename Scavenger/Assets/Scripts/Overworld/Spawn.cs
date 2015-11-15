@@ -8,21 +8,20 @@ public class Spawn : MonoBehaviour {
 		ScreenFader sf = GameObject.FindGameObjectWithTag ("Fader").GetComponent<ScreenFader>();
 
 		if (other.tag == "Player") {
-			Debug.Log ("Detected in spawn area.");
 			if(countEncounterChance() == true) {
 				yield return StartCoroutine(sf.FadeToBlack());
-				Application.LoadLevel("Main");
+				Application.LoadLevel("Battle Mode");
 			}
-		
 		}
-
 	}
 
 	private bool countEncounterChance() {;
-		int chance = Random.Range (1,10);
+		int chance = Random.Range (1,3);
 		Debug.Log ("Encounter chance: " + chance);
-		if (chance == 9)
+		if (chance == 1) {
+			Debug.Log ("Log: Fight encountered.");
 			return true;
+		}
 		else
 			return false;
 	}

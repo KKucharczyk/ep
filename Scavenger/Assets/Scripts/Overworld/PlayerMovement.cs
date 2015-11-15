@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEditor;
 using System.Collections;
 
 public class PlayerMovement : MonoBehaviour {
@@ -15,7 +16,6 @@ public class PlayerMovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		Vector2 movement_vector = new Vector2 (Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-
 		if (movement_vector != Vector2.zero) {
 			anim.SetBool ("isWalking", true);
 			anim.SetFloat("input_x", movement_vector.x);
@@ -24,6 +24,9 @@ public class PlayerMovement : MonoBehaviour {
 			anim.SetBool("isWalking", false);
 		}
 
+
 		rbody.MovePosition (rbody.position + movement_vector * Time.deltaTime);
+		PlayerInformation.position = rbody.position;
+
 	}
 }
