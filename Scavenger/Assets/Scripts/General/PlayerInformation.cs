@@ -11,6 +11,6 @@ public class PlayerInformation : MonoBehaviour {
 	public static int level = 1;
 	
 	// Experience points
-	public static int experience = 0;
+	public static int experience = 0; 
 
 }
