@@ -4,10 +4,9 @@ using System.Collections;
 public class Spawn : MonoBehaviour {
 
 	IEnumerator OnTriggerEnter2D(Collider2D other) {
-
 		ScreenFader sf = GameObject.FindGameObjectWithTag ("Fader").GetComponent<ScreenFader>();
 
-		if (other.tag == "Player") {
+		if (other.tag == "Player" && PlayerInformation.encounterPossibility == true) {
 			if(countEncounterChance() == true) {
 				yield return StartCoroutine(sf.FadeToBlack());
 				Application.LoadLevel("Battle Mode");
@@ -15,10 +14,14 @@ public class Spawn : MonoBehaviour {
 		}
 	}
 
+	void OnTriggerExit2D() {
+		PlayerInformation.encounterPossibility = true;
+	}
+
 	private bool countEncounterChance() {;
-		int chance = Random.Range (1,3);
-		Debug.Log ("Encounter chance: " + chance);
-		if (chance == 1) {
+		int encounterChance = Random.Range (1,5);
+		Debug.Log ("Encounter chance: " + encounterChance);
+		if (encounterChance == 1) {
 			Debug.Log ("Log: Fight encountered.");
 			return true;
 		}

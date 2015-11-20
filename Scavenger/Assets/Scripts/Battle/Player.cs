@@ -68,8 +68,8 @@ public class Player : MovingObject {
 
 	private void OnTriggerEnter2D(Collider2D other) {
 		if (other.tag == "Exit") {
+			PlayerInformation.encounterPossibility = false;
 			Application.LoadLevel("Overworld");
-			enabled = false;
 		} else if (other.tag == "Food") {
 			food += pointsPerFood;
 			SoundManager.instance.RandomizeSfx(eatSound1, eatSound2);
