@@ -11,13 +11,10 @@ public class CameraFollow : MonoBehaviour {
 	public GameObject player;
 
 
-	IEnumerator Start () {
-		ScreenFader sf = GameObject.FindGameObjectWithTag ("Fader").GetComponent<ScreenFader>();
-
+	void Start () {
 		// inicjalizacja postaci na współrzędnych podanych w PlayerInformation
 		GameObject.Instantiate (player, PlayerInformation.position, Quaternion.identity);
 		myCam = GetComponent<Camera> ();
-		yield return StartCoroutine(sf.FadeToClear());
 	}
 
 	void Update () {

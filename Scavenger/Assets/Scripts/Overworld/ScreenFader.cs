@@ -12,14 +12,16 @@ public class ScreenFader : MonoBehaviour {
 
 	}
 
-	public IEnumerator FadeToClear() {
+	// Fading animation Clear -> Black
+	public IEnumerator Fading() {
 		isFading = true;
 		anim.SetTrigger ("FadeIn");
 		while (isFading)
 			yield return null;
 	}
 
-	public IEnumerator FadeToBlack() {
+	// Unfading animation Black -> Clear
+	public IEnumerator Unfading() {
 		isFading = true;
 		anim.SetTrigger ("FadeOut");
 		while (isFading)

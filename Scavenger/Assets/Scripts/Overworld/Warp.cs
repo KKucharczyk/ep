@@ -9,11 +9,11 @@ public class Warp : MonoBehaviour {
 
 		ScreenFader sf = GameObject.FindGameObjectWithTag ("Fader").GetComponent<ScreenFader>();
 
-		yield return StartCoroutine (sf.FadeToBlack ());
+		yield return StartCoroutine (sf.Fading ());
 
 		other.gameObject.transform.position = warpTarget.position;
 		Camera.main.transform.position = warpTarget.position;
 
-		yield return StartCoroutine (sf.FadeToClear ());
+		yield return StartCoroutine (sf.Unfading ());
 	}
 }

@@ -8,7 +8,7 @@ public class Spawn : MonoBehaviour {
 
 		if (other.tag == "Player" && PlayerInformation.encounterPossibility == true) {
 			if(countEncounterChance() == true) {
-				yield return StartCoroutine(sf.FadeToBlack());
+				yield return StartCoroutine(sf.Fading());
 				Application.LoadLevel("Battle Mode");
 			}
 		}
