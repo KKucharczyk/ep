@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if(Warp.isWarping == false) {
 		Vector2 movement_vector = new Vector2 (Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 		if (movement_vector != Vector2.zero) {
 			anim.SetBool ("isWalking", true);
@@ -24,9 +25,12 @@ public class PlayerMovement : MonoBehaviour {
 			anim.SetBool("isWalking", false);
 		}
 
+			rbody.MovePosition (rbody.position + movement_vector * Time.deltaTime);
+			PlayerInformation.position = rbody.position;
+	}
 
-		rbody.MovePosition (rbody.position + movement_vector * Time.deltaTime);
-		PlayerInformation.position = rbody.position;
+
+
 
 	}
 }
