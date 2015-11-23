@@ -5,8 +5,6 @@ using UnityEngine.UI;
 public class Player : MovingObject {
 
 	public int wallDamage = 1;
-	public int pointsPerFood = 10;
-	public int pointsPerSoda = 20;
 	public float restartLevelDelay = 1f;
 	public AudioClip moveSound1;
 	public AudioClip moveSound2;
@@ -16,26 +14,23 @@ public class Player : MovingObject {
 	public AudioClip drinkSound2;
 	public AudioClip gameOverSound;
 
+	public int damage = 10;
+
 	private Vector2 touchOrigin = -Vector2.one;
 
 	private Animator animator;
-	private int food;
+
+	private Text lifePoints;
 
 	// Use this for initialization
 	protected override void Start () {
 		animator = GetComponent<Animator> ();
-		food = GameManager.instance.playerFoodPoints;
-
+		lifePoints = GameObject.Find ("playerLifePointsText").GetComponent<Text>();
+		lifePoints.text = "Life: " + PlayerInformation.lifePoints;
 		base.Start ();
 	}
 
-	private void OnDisable() {
-		GameManager.instance.playerFoodPoints = food;
-	}
-
 	protected override void AttemptMove<T>(int xDir, int yDir) {
-		food--;
-
 		base.AttemptMove<T> (xDir, yDir);
 		RaycastHit2D hit;
 		if (Move (xDir, yDir, out hit)) {
@@ -47,17 +42,18 @@ public class Player : MovingObject {
 	}
 
 	private void checkIfGameOver() {
-		if (food <= 0) {
-			SoundManager.instance.PlaySingle(gameOverSound);
-			SoundManager.instance.musicSource.Stop();
+		if (PlayerInformation.lifePoints <= 0) {
+			//SoundManager.instance.PlaySingle(gameOverSound);
+			//SoundManager.instance.musicSource.Stop();
 			GameManager.instance.GameOver ();
 		}
 	}
 
 	protected override void OnCantMove<T>(T component) {
-		Wall hitWall = component as Wall;
-		hitWall.DamageWall (wallDamage);
+		Enemy hitWall = component as Enemy;
+		//hitWall.DamageWall (wallDamage);
 		animator.SetTrigger ("playerChop");
+		hitWall.loseLifePoints (damage);
 
 
 	}
@@ -69,21 +65,14 @@ public class Player : MovingObject {
 	private void OnTriggerEnter2D(Collider2D other) {
 		if (other.tag == "Exit") {
 			PlayerInformation.encounterPossibility = false;
-			Application.LoadLevel("Overworld");
-		} else if (other.tag == "Food") {
-			food += pointsPerFood;
-			SoundManager.instance.RandomizeSfx(eatSound1, eatSound2);
-			other.gameObject.SetActive (false);
-		} else if (other.tag == "Soda") {
-			food += pointsPerSoda;
-			SoundManager.instance.RandomizeSfx(drinkSound1, drinkSound2);
-			other.gameObject.SetActive (false);
-		}
+			Application.LoadLevelAsync("Overworld");
+		} 
 	}
 
-	public void loseFood(int loss) {
+	public void loseLifePoints(int loss) {
 		animator.SetTrigger ("playerHit");
-		food -= loss;
+		PlayerInformation.lifePoints -= loss;
+		lifePoints.text = "Life: " + PlayerInformation.lifePoints;
 		checkIfGameOver ();
 	}
 	
@@ -131,6 +120,6 @@ public class Player : MovingObject {
 #endif
 
 		if (horizontal != 0 || vertical != 0)
-			AttemptMove<Wall> (horizontal, vertical);
+			AttemptMove<Enemy> (horizontal, vertical);
 	}
 }
