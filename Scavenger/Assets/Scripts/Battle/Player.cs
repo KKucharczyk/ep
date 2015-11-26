@@ -78,6 +78,9 @@ public class Player : MovingObject {
 	
 	// Update is called once per frame
 	void Update () {
+		if (PlayerInformation.chanceForBlocking == true)
+			StartCoroutine (wait ());
+
 		if (!GameManager.instance.playersTurn)
 			return;
 
@@ -121,5 +124,10 @@ public class Player : MovingObject {
 
 		if (horizontal != 0 || vertical != 0)
 			AttemptMove<Enemy> (horizontal, vertical);
+	}
+
+	IEnumerator wait() {
+		//Debug.Log ("Waiting");
+		yield return new WaitForSeconds (5f);
 	}
 }

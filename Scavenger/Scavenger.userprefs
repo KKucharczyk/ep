@@ -2,11 +2,10 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\General\PlayerInformation.cs">
     <Files>
-      <File FileName="Assets\Scripts\General\PlayerInformation.cs" Line="10" Column="2" />
-      <File FileName="Assets\Scripts\Battle\Player.cs" Line="68" Column="30" />
-      <File FileName="c:\Users\Public\Documents\Unity Projects\Scavenger\Assets\Scripts\Battle\Enemy.cs" Line="22" Column="21" />
-      <File FileName="Assets\Scripts\Battle\Loader.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Battle\GameManager.cs" Line="9" Column="32" />
+      <File FileName="Assets\Scripts\Battle\Coroutine.cs" Line="11" Column="5" />
+      <File FileName="c:\Users\Public\Documents\Unity Projects\Scavenger\Assets\Scripts\Battle\Enemy.cs" Line="133" Column="18" />
+      <File FileName="Assets\Scripts\Battle\Player.cs" Line="130" Column="5" />
+      <File FileName="Assets\Scripts\General\PlayerInformation.cs" Line="19" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

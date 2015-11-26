@@ -88,7 +88,7 @@ public class BoardManager : MonoBehaviour {
 		InitialiseList ();
 		
 		//Instantiate a random number of wall tiles based on minimum and maximum, at randomized positions.
-		LayoutObjectAtRandom (wallTiles, wallCount.minimum, wallCount.maximum);
+		//LayoutObjectAtRandom (wallTiles, wallCount.minimum, wallCount.maximum);
 		
 		//Instantiate a random number of food tiles based on minimum and maximum, at randomized positions.
 		LayoutObjectAtRandom (foodTiles, foodCount.minimum, foodCount.maximum);
