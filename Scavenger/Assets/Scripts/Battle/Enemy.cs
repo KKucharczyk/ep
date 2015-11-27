@@ -157,7 +157,7 @@ public class Enemy : MovingObject {
 		}
 		// if attack was blocked succesfully..
 		else
-			; // Do nothing.
+			Debug.Log ("Nope"); // Do nothing.
 			//Debug.Log("Attack deflected!");
 
 		// reset blocking flag

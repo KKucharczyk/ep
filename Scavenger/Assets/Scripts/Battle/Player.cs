@@ -21,11 +21,13 @@ public class Player : MovingObject {
 	private Animator animator;
 
 	private Text lifePoints;
+	private Text acceleration;
 
 	// Use this for initialization
 	protected override void Start () {
 		animator = GetComponent<Animator> ();
 		lifePoints = GameObject.Find ("playerLifePointsText").GetComponent<Text>();
+		acceleration = GameObject.Find ("AcceleratorHelper").GetComponent<Text>();
 		lifePoints.text = "Life: " + PlayerInformation.lifePoints;
 		base.Start ();
 	}
@@ -81,6 +83,8 @@ public class Player : MovingObject {
 		if (PlayerInformation.chanceForBlocking == true)
 			StartCoroutine (wait ());
 
+		//acceleration.text = "A: " + Input.acceleration;
+		
 		if (!GameManager.instance.playersTurn)
 			return;
 
