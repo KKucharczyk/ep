@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour {
 		//DontDestroyOnLoad (gameObject);
 		enemies = new List<Enemy>();
 		boardScript = GetComponent<BoardManager>();
-		InitGame ();
+		//InitGame ();
 	}
 
 	private void OnLevelWasLoaded(int index) {

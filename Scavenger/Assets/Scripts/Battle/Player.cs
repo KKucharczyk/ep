@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class Player : MovingObject {
-
+	 
 	public int wallDamage = 1;
 	public float restartLevelDelay = 1f;
 	public AudioClip moveSound1;
@@ -21,13 +21,11 @@ public class Player : MovingObject {
 	private Animator animator;
 
 	private Text lifePoints;
-	private Text acceleration;
 
 	// Use this for initialization
 	protected override void Start () {
 		animator = GetComponent<Animator> ();
 		lifePoints = GameObject.Find ("playerLifePointsText").GetComponent<Text>();
-		acceleration = GameObject.Find ("AcceleratorHelper").GetComponent<Text>();
 		lifePoints.text = "Life: " + PlayerInformation.lifePoints;
 		base.Start ();
 	}
@@ -56,6 +54,7 @@ public class Player : MovingObject {
 		//hitWall.DamageWall (wallDamage);
 		animator.SetTrigger ("playerChop");
 		hitWall.loseLifePoints (damage);
+		hitWall.checkIfDead ();
 
 
 	}
@@ -82,8 +81,6 @@ public class Player : MovingObject {
 	void Update () {
 		if (PlayerInformation.chanceForBlocking == true)
 			StartCoroutine (wait ());
-
-		//acceleration.text = "A: " + Input.acceleration;
 		
 		if (!GameManager.instance.playersTurn)
 			return;

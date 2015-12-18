@@ -23,13 +23,14 @@ public class Enemy : MovingObject {
 
 	private bool skipMove;
 	private bool enemyAlive = true;
-	public static int  lifePoints = 1000;
+	public static int lifePoints;
 
 
 	
 	protected override void Start () {
 		GameManager.instance.AddEnemyToList (this);
 		enemyAlive = true;
+		lifePoints = 50;
 
 		animator = GetComponent<Animator> ();
 		target = GameObject.FindGameObjectWithTag ("Player").transform;
@@ -79,16 +80,15 @@ public class Enemy : MovingObject {
 		if (enemyAlive) {
 			Enemy.lifePoints -= loss;
 			lifePointsText.text = "Life: " + Enemy.lifePoints;
-			checkIfDead ();
+			//checkIfDead ();
 		}
 	}
 
-	private void checkIfDead() {
+	public void checkIfDead() {
 		if (lifePoints <= 0) {
-			//SoundManager.instance.PlaySingle(gameOverSound);
-			//SoundManager.instance.musicSource.Stop();
 			enemyAlive = false;
 			gameObject.SetActive(false);
+			Application.LoadLevelAsync("Overworld");
 		}
 	}
 
@@ -129,8 +129,6 @@ public class Enemy : MovingObject {
 				animator.SetTrigger ("enemyAttack");
 				hitPlayer.loseLifePoints (playerDamage);
 			}
-
-			//SoundManager.instance.RandomizeSfx (enemyAttack1, enemyAttack2);
 		}
 	}
 
@@ -158,7 +156,6 @@ public class Enemy : MovingObject {
 		// if attack was blocked succesfully..
 		else
 			Debug.Log ("Nope"); // Do nothing.
-			//Debug.Log("Attack deflected!");
 
 		// reset blocking flag
 		PlayerInformation.isAttackBlocked = false;
